@@ -3,9 +3,42 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+function checkForm(form)
+{
+  if(form.company.value == "") {
+    alert("Error: Input is empty!");
+    form.company.focus();
+    return false;
+  }
+
+  if(form.export.value == "") {
+	    alert("Error: Input is empty!");
+	    form.export.focus();
+	    return false;
+	  }
+  
+  var re = /^[\w ]+$/;
+
+  if(!re.test(form.company.value)) {
+    alert("Error: Input contains invalid characters!");
+    form.company.focus();
+    return false;
+  }
+  
+  if(!re.test(form.export.value)) {
+	    alert("Error: Input contains invalid characters!");
+	    form.export.focus();
+	    return false;
+	  }
+
+  return true;
+}
+
+</script>
 </head>
 <body>
-<form action="addItemServlet" method="post">
+<form action="addItemServlet" method="post" onsubmit="return(checkForm(this));">
 Company: <input type="text" name = "company">
 Primary export: <input type="text" name="export">
 <input type = "submit" value="Add Item">
